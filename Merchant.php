@@ -11,8 +11,6 @@ class Merchant extends Object
 
     public $sMerchantPass1;
     public $sMerchantPass2;
-    public $sMerchantTestPass1;
-    public $sMerchantTestPass2;
     public $isTest;
 
     public $baseUrl = 'https://auth.robokassa.ru/Merchant/Index.aspx';
@@ -21,12 +19,7 @@ class Merchant extends Object
     {
         $url = $this->baseUrl;
 
-        $signature = "{$this->sMerchantLogin}:{$nOutSum}:{$nInvId}";
-        if ($this->isTest) {
-            $signature = "$signature:{$this->sMerchantTestPass1}";
-        } else {
-            $signature = "$signature:{$this->sMerchantPass1}";
-        }
+        $signature = "{$this->sMerchantLogin}:{$nOutSum}:{$nInvId}:{$this->sMerchantPass1}";
         if (!empty($shp)) {
             $signature .= ':' . $this->implodeShp($shp);
         }
