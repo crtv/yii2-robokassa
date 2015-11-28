@@ -17,5 +17,8 @@
     },
     "autoload": {
         "psr-4": { "robokassa\\": "" }
+    },
+    "require-dev": {
+        "crtv/yii2-robokassa": "dev-master"
     }
 }

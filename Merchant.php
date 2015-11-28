@@ -21,7 +21,12 @@ class Merchant extends Object
     {
         $url = $this->baseUrl;
 
-        $signature = "{$this->sMerchantLogin}:{$nOutSum}:{$nInvId}:{$this->sMerchantPass1}";
+        $signature = "{$this->sMerchantLogin}:{$nOutSum}:{$nInvId}";
+        if ($this->isTest) {
+            $signature = "$signature:{$this->sMerchantTestPass1}";
+        } else {
+            $signature = "$signature:{$this->sMerchantPass1}";
+        }
         if (!empty($shp)) {
             $signature .= ':' . $this->implodeShp($shp);
         }
